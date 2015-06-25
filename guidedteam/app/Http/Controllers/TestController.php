@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Userprofile;
 use Illuminate\Http\Request;
+use Auth;
+//use Illuminate\Support\Facades\
+
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+
 
 class TestController extends Controller
 {
@@ -28,7 +33,7 @@ class TestController extends Controller
      */
     public function create()
     {
-        //
+        return view('test');
     }
 
     /**
@@ -36,9 +41,19 @@ class TestController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        //
+        if (Auth::check()) {
+            $profile = new Userprofile($request->all());
+            Auth::user()->userprofile()->save($profile);
+            //$profile->save();
+            return 'success';
+            // The user is logged in...
+            // Maybe add a Redirect::to()
+        } else {
+            return 'failed';
+            // User is not logged in...
+        }
     }
 
     /**

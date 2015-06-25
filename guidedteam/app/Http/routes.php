@@ -15,6 +15,9 @@
 
 Route::get('/set_role', 'RegroleController@store');
 
+Route::get('/test', 'TestController@create');
+Route::post('/test/', 'TestController@store');
+
 
 Route::get('/', function () {
     return view('welcome');

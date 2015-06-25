@@ -41,4 +41,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function regroles(){
         return $this->belongsToMany('App\Regrole')->withTimestamps();;
     }
+
+    public function userprofile()
+    {
+        return $this->hasOne('App\Userprofile');
+    }
 }
